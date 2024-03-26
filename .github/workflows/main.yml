@@ -1,8 +1,7 @@
-name: Docker Image CI
+name: Load test
 on:
-  # Triggers the workflow every 5 minutes
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: '*/5 * * * *'
 jobs:
 
   build:
