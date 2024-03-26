@@ -1,7 +1,8 @@
 name: Load test
 on:
-  branch_protection_rule:
-    types: [created, deleted]
+  pull_request:
+    types:
+      - closed
 jobs:
 
   build:
