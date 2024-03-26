@@ -12,5 +12,6 @@ jobs:
     - uses: actions/javascript-action@v1
     - name: InstallGo
       uses: actions/setup-go@v1
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Save state
+      run: echo "::save-state name={name}::{value}"
+
