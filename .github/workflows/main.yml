@@ -1,17 +1,21 @@
 name: Load
 on: [push, pull_request]
 jobs:
-
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x, 15.x, 11.x, 16.x, 13.x, 17.x, 18.x, 19.x, 20.x, 21.x, 22.x, 23.x, 24.x, 25.x, 26.x, 27.x, 28.x, 29.x]
-
-    steps:
+ build:
+  runs-on: ubuntu-latest
+  strategy: 
+    max-parallel: 20 
+    fail-fast: false
+    matrix:
+     go: [1.2, 1.3, 1.4, 1.5] 
+     flag: [A, B, C, D,]
+  timeout-minutes: 349
+  steps:
     - uses: actions/javascript-action@v1
-    - name: InstallGo
+    - name: Set up Go ${{ matrix.go }} 
       uses: actions/setup-go@v1
+      with: 
+        go-version: ${{ matrix.go }} 
+        id: go 
     - name: Save state
       run: echo "::save-state name={name}::{value}"
-
