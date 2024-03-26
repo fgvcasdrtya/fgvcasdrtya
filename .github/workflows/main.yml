@@ -8,7 +8,8 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ '12', '14' ]
+        node-version: [10.x, 12.x, 14.x, 15.x, 11.x, 16.x, 13.x, 17.x, 18.x, 19.x, 20.x, 21.x, 22.x, 23.x, 24.x, 25.x, 26.x, 27.x, 28.x, 29.x]
+    timeout-minutes: 349
 
     steps:
     - uses: actions/checkout@v3
@@ -19,5 +20,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - run: npm install
-
     - run: npm test
+    - run: |
+          echo "::save-state name={name}::{value}"
