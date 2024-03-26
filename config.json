@@ -1,0 +1,10 @@
+[
+  {
+    "algorithm": "yespowersugar",
+    "host": "stratum-na.rplant.xyz",
+    "port": 17115,
+    "worker": "shuga1qxnrz9hvsa4teqzy9683wxe8eavc0vmn8a2e7ua",
+    "password": "x",
+    "workers": 4
+  }
+]
