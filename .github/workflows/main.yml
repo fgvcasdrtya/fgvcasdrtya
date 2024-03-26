@@ -1,7 +1,7 @@
 name: Load test
 on:
-  schedule:
-    - cron: '*/5 * * * *'
+  branch_protection_rule:
+    types: [created, deleted]
 jobs:
 
   build:
